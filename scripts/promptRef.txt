@@ -1,0 +1,23 @@
+The zero-shot prompt of unsupervised SAFARI at planning step (translated from Chinese to English):
+There are different knowledge bases storing relevant information:K_1: {K_1_DESC} K_2: {K_2_DESC}......
+There exists a dependency between these knowledge bases.{DEPENDENCY_DESC}
+Here is the dialogue between the user and the system: {DIALOGUE}
+Based on the user's last question, please determine if it requires invoking the corresponding knowledge base.
+If the invocation is necessary, output the names of the knowledge bases in the order they should be invoked.
+If no invocation is needed, output NULL.
+
+The zero-shot prompt of unsupervised SAFARI at assembling step (translated from Chinese to English):
+The dialogue is as follows:{DIALOGUE}
+The following knowledge is retrieved from different sources of knowledge bases:{MIDDLE_RESULTS}
+Please play the role of the system and generate a reply according to the context of the dialogue and given knowledge.
+Please make sure your reply is consistent with the given knowledge.
+If the provided knowledge is NULL, generate a response solely based on the dialogue context.
+System:
+
+The prompts of unsupervised SAFARI on KBP dataset (translated from Chinese to English):
+There are two knowledge bases storing relevant information:
+PERSONA: This knowledge base stores information related to system personas, such as gender, age, place of origin, hobbies, personality traits, and other relevant data.
+DOCUMENTS: This knowledge base stores domainspecific knowledge related to system personas, such as the domain knowledge about the place of origin. There exists a dependency between these knowledge bases. The invocation of DOCUMENTS relies on the results from PERSONA. Please ensure the correct order of invoking them.
+Here is the dialogue between the user and the system: {dialogue_history}
+Based on the user's last question, please determine if it requires invoking the corresponding knowledge base. If the invocation is necessary, output the names of the knowledge bases in the order they should be invoked. If no invocation is needed, output NULL.
+

@@ -1,0 +1,18 @@
+#openai_key: sk-d21i9b6ksBZZZYOa0c3aAa4aDbB94b7f8d24396f64145763 #weiruan
+#openai_host: http://49.51.186.136:83/v1/chat/completions
+openai_host: http://openai-api-test.c33956eb25eb04c9e983fb85c5ec78a95.cn-beijing.alicontainer.com/v1/chat/completions #haoweilai
+#openai_host: http://openaiproxy.c33956eb25eb04c9e983fb85c5ec78a95.cn-beijing.alicontainer.com/v1/chat/completions #weiruan
+xmindai_host: http://211.159.172.4:90/v1/chat/completions
+baichuan_host : http://211.102.192.171:12345/generate?host=10.3.1.1:8101 #53B
+baichuan_host_53B: http://211.102.192.101:12345/generate?host=10.3.1.1:8101
+models: # 替换模型的字段，用于openai_ask(model)获取被调模型
+  gpt-4: gpt-4-0613
+  gpt-3: gpt-3.5-turbo
+bots:
+  feishu:
+    enable: true
+    webhook: https://open.feishu.cn/open-apis/bot/v2/hook/1a0fcab2-c48d-4c02-a587-43a43ca05a4f
+    secret: 'C9AqF8C8wkdpymoIoWQW3c' # not-set
+#proxies:
+#  http: http://127.0.0.1:7890
+#  https: http://127.0.0.1:7890
