@@ -74,9 +74,21 @@ The category list is:
 690,Unchecked Return Value to NULL Pointer Dereference
 
 For the vulnerability that exists in this code, you need to decide on one or more categories that fit the category of the vulnerability in the code.
-Response Format is the same as the list above:
+Response format is the same as the list above, if there is no flaw in the code, response null:
 category number, flaw category
 '''
+
+
+insert_prompt = '''You are a professional vulnerability analyzer. I will give you a piece of C/C++ code with flaws.
+I will give you one or some categories of the flaw in the code, and you have to determine the which part of code that may cause the flaws. 
+The potential flaw type and description are:
+
+response format:
+flaw category, corresponding code that may cause the flaw'''
+
+
+
+
 
 
 judgement_prompt ='''

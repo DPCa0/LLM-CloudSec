@@ -54,7 +54,7 @@ def load_test_data(filename):
 
         for row in reader:
             try:
-                extracted_data_text.append((row[1], row[2], row[4]))
+                extracted_data_text.append((row[0], row[1], row[2]))
             except IndexError:
                 # This will catch any rows that don't have the expected number of columns
                 extracted_data_text.append((f"Malformed row: {row}",))
@@ -66,7 +66,7 @@ def load_test_data(filename):
     return extracted_data_text
 
 
-def get_predicted_labels(data, cache_file='cache_cleaned.json'):
+def get_predicted_labels(data, cache_file='D2A_cache_cleaned.json'):
     # Step 1: Check if a cache file exists
     if os.path.exists(cache_file):
         with open(cache_file, 'r') as f:
@@ -87,13 +87,13 @@ def get_predicted_labels(data, cache_file='cache_cleaned.json'):
             predicted.append(cache[uid_str])
             continue
 
-        cleaned_code = clean_code(item[1])
+        cleaned_code = clean_code(item[2])
         label = classification(cleaned_code)
         entry = {
-            'UID': item[0],
+            'ID': item[0],
+            'UID': item[1],
             'code': cleaned_code,
-            'predicted': label,
-            'CWE': item[2]
+            'predicted': label
         }
         predicted.append(entry)
 
@@ -121,9 +121,9 @@ def extract_cwe_data():
         print(f"{data[0]},{description}")
 
 
-data = load_test_data('dataset/sampled_vulnerable_codes.csv')
+data = load_test_data('results/unique_datasets/D2A_consistent.csv')
 predicted = get_predicted_labels(data)
-with open('predicted.json', 'w') as f:
+with open('D2A_consistent_predicted.json', 'w') as f:
     json.dump(predicted, f)
 
 
