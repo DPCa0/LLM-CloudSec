@@ -34,6 +34,7 @@ import json
 # else:
 #     print(f"No data found for CWE-ID: {cwe_id}")
 
-with open('test.json') as f:
+with open('test_D2A_cache.json') as f:
     data = json.load(f)
-    print(len(data))
+    print(f"数据样例：{data[0]}")
+    print(f"总数据量：{len(data)}")

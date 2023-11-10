@@ -35,7 +35,7 @@ def clean_code(code_snippet):
 
 
 def classification(query, temperature: float = 0.01):
-    system_prompt = make_msg('system', classify1_prompt)
+    system_prompt = make_msg('system', classify_empty_prompt)
     message = make_msg('user', query)
     content = openai_ask(message, model_name='gpt-4', history=system_prompt, temperature=temperature)
     print(f"判断结果：{content}")
@@ -119,9 +119,9 @@ def extract_cwe_data():
         print(f"{data[0]},{description}")
 
 
-data = load_test_data('results/unique_datasets/D2A_consistent.csv')
+data = load_test_data('dataset/sampled_vulnerable_codes.csv')
 predicted = get_predicted_labels(data)
-with open('D2A_consistent_predicted.json', 'w') as f:
+with open('empty_predicted.json', 'w') as f:
     json.dump(predicted, f)
 
 

@@ -78,6 +78,16 @@ Response format is the same as the list above, if there is no flaw in the code, 
 category number, flaw category
 '''
 
+classify_empty_prompt = '''
+You are a professional vulnerability analyzer. I will give you a piece of C/C++ code with flaws.
+You have to judge the category of the flaw based on the code I provide.
+The category list is Common Weakness Enumeration (CWE) list, which is a list of software weaknesses.
+For the vulnerability that exists in this code, you need to decide on one or more categories that fit the category of the vulnerability in the code.
+If there is no flaw in the code, response null.
+Response format:
+category number, flaw category
+'''
+
 
 insert_prompt = '''You are a professional vulnerability analyzer. I will give you a piece of C/C++ code with flaws.
 I will give you one or some categories of the flaw in the code, and you have to determine the which part of code that may cause the flaws. 
