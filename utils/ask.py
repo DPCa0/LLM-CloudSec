@@ -17,11 +17,6 @@ if openai_key := configs.config.get("openai_key"):
 
 
 def make_msg(role: str, content: str):
-    """
-    生成gpt消息
-    :param role: str 消息角色 user/system
-    :param content: str 消息内容
-    """
     return [{'role': role, 'content': content}]
 
 
@@ -30,14 +25,7 @@ def openai_ask(
         temperature: float = 0.01, retry=100,
         custom_header: typing.Union[dict, None] = None,
 ):
-    """
-    使用session对openai进行问答，返回content(翻译成中文)
-    :param messages: 提问序列
-    :param temperature: temperature参数
-    :param retry: 重试次数
-    :param show: 是否打印log
-    :return: content
-    """
+
     api = configs.config.get("openai_host")
     model = configs.config.get("models", {}).get(model_name, model_name)
     if not isinstance(history, list):
@@ -50,13 +38,12 @@ def openai_ask(
         "stream": True,
     }
     retry_strategy = Retry(
-        total=1,  # 最大重试次数（包括首次请求）
-        backoff_factor=1,  # 重试之间的等待时间因子
-        status_forcelist=[429, 500, 502, 503, 504],  # 需要重试的状态码列表
-        allowed_methods=["POST"]  # 只对POST请求进行重试
+        total=1,
+        backoff_factor=1,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["POST"]
     )
     adapter = HTTPAdapter(max_retries=retry_strategy)
-    # 创建会话并添加重试逻辑
     session = requests.Session()
     session.mount("https://", adapter)
     session.mount("http://", adapter)
