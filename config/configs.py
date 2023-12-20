@@ -10,7 +10,7 @@ def read_yaml_config(file_path: str):
         try:
             cfg = yaml.safe_load(stream)
         except yaml.YAMLError:
-            print("在读取config时出现异常")
+            print("load_cfg error")
             traceback.print_exc()
             cfg = None
     return cfg
